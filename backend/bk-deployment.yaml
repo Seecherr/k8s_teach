@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+    name: backend
+    labels:
+        app: backend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: backend
+    template:
+        metadata:
+            labels:
+                app: backend
+        spec:
+            containers:
+                - name: backend
+                  image: yurti/teach_back
+                  env:
+                    - name: JDBC_DRIVER
+                      valueFrom:
+                        configMapKeyRef:
+                            name: backend-config
+                            key: JDBC_DRIVER
+                    - name: DATASOURCE_URL
+                      valueFrom:
+                        configMapKeyRef:
+                            name: backend-config
+                            key: DATASOURCE_URL
+                    - name: DATASOURCE_USER
+                      valueFrom:
+                        configMapKeyRef:
+                            name: backend-config
+                            key: DATASOURCE_USER
+                    - name: DATASOURCE_PASSWORD
+                      valueFrom:
+                        configMapKeyRef:
+                            name: backend-config
+                            key: DATASOURCE_PASSWORD

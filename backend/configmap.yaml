@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+    JDBC_DRIVER: "org.mariadb.jdbc.Driver"
+    DATASOURCE_URL: "jdbc:mariadb://mariadb-service:3306/teach"
+    DATASOURCE_USER: "root"
+    DATASOURCE_PASSWORD: "Ss11_ddd"
+
+
+
+
